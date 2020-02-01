@@ -16,9 +16,8 @@ ActiveRecord::Schema.define(version: 2020_02_01_161202) do
   enable_extension "plpgsql"
 
   create_table "user_shifts", force: :cascade do |t|
-    t.datetime "check_in_time"
-    t.datetime "check_out_time"
     t.integer "user_id"
+    t.string "shift_action_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

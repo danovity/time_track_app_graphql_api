@@ -1,0 +1,150 @@
+"""
+Date in UTC ISO8601 Format, example: 2018-03-27
+"""
+scalar DateISO
+
+type Mutation {
+  """
+  Create a new user.
+  """
+  UserCreate(emailAddress: String!, firstName: String!, lastName: String!): User
+
+  """
+  User Clock-In or Clock-Out of a shift.
+  """
+  UserShiftCreate(shift_action_type: UserShiftType!, user_id: ID!): UserShift
+}
+
+"""
+Information about pagination in a connection.
+"""
+type PageInfo {
+  """
+  When paginating forwards, the cursor to continue.
+  """
+  endCursor: String
+
+  """
+  When paginating forwards, are there more items?
+  """
+  hasNextPage: Boolean!
+
+  """
+  When paginating backwards, are there more items?
+  """
+  hasPreviousPage: Boolean!
+
+  """
+  When paginating backwards, the cursor to continue.
+  """
+  startCursor: String
+}
+
+type Query {
+  """
+  Find an User by ID
+  """
+  User(id: ID): User
+
+  """
+  A paginated list of the user's check-in check-out time
+  """
+  userShifts(
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+    id: ID
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+  ): UserShiftConnection
+}
+
+"""
+An User.
+"""
+type User {
+  """
+  User's Email Address
+  """
+  emailAddress: String!
+
+  """
+  User's First Name
+  """
+  firstName: String!
+  id: ID!
+
+  """
+  User's Last Name
+  """
+  lastName: String!
+}
+
+"""
+An User's Work Shifts.
+"""
+type UserShift {
+  id: ID!
+
+  """
+  Shift Action Type
+  """
+  shiftActionType: UserShiftType!
+
+  """
+  Shift Time
+  """
+  time: DateISO!
+}
+
+"""
+The connection type for UserShift.
+"""
+type UserShiftConnection {
+  """
+  A list of edges.
+  """
+  edges: [UserShiftEdge]
+
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+}
+
+"""
+An edge in a connection.
+"""
+type UserShiftEdge {
+  """
+  A cursor for use in pagination.
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge.
+  """
+  node: UserShift
+}
+
+"""
+Describes the type of shift actions the user is doing.
+"""
+enum UserShiftType {
+  CLOCK_IN
+  CLOCK_OUT
+}

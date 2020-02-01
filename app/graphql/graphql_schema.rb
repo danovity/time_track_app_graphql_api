@@ -1,4 +1,4 @@
-class HimamaCloneGraphqlApiSchema < GraphQL::Schema
+class GraphQLSchema < GraphQL::Schema
   mutation(Types::MutationType)
   query(Types::QueryType)
 end

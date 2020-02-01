@@ -1,4 +1,4 @@
-class GraphqlController < ApplicationController
+class GraphQLController < ApplicationController
   def execute
     variables = ensure_hash(params[:variables])
     query = params[:query]
@@ -7,7 +7,7 @@ class GraphqlController < ApplicationController
       # Query context goes here, for example:
       # current_user: current_user,
     }
-    result = HimamaCloneGraphqlApiSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
+    result = GraphQLSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
   rescue => e
     raise e unless Rails.env.development?

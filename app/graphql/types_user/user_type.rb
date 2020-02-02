@@ -15,7 +15,7 @@ TypesUser::UserType =
       end
     end
 
-    connection :allShiftsStatus, !TypesUserShift::UserShiftType.connection_type, "A paginated list of the user's check-in check-out time" do
+    field :allShiftsStatus, !TypesUserShift::UserShiftType, "A non-paginated list of the user's check-in check-out time" do
       resolve ->(user, arguments, _context) do
         UserShift.where(user_id: user.id).order("created_at DESC")
       end

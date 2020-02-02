@@ -4,12 +4,11 @@ TypesUserShift::Mutations::UserShiftCreate = GraphQL::ObjectType.define do
     description 'User Clock-In or Clock-Out of a shift.'
 
     argument :shift_action_type, !TypesUserShift::Enums::UserShiftActionTypeEnum
-    argument :emailAddress, !types.String
+    argument :id, !types.ID
 
     resolve ->(_object, arguments, _context) do
       shift_action_type = arguments[:shift_action_type]
-      emailAddress = arguments[:emailAddress]
-      user = User.find_by(email_address: emailAddress)
+      user = User.find(arguments[:id])
 
       user_shift = UserShift.new(user_id: user.id, shift_action_type: shift_action_type)
 

@@ -13,7 +13,7 @@ TypesUserShift::Mutations::UserShiftCreate = GraphQL::ObjectType.define do
       user_shift = UserShift.new(user_id: user.id, shift_action_type: shift_action_type)
 
       if user_shift.save
-        user_shift.order(:created_at)
+        user_shift
       else
         "UserShiftCreate Error"
       end

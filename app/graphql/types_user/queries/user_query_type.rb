@@ -1,7 +1,7 @@
 TypesUser::Queries::UserQueryType = GraphQL::ObjectType.define do
   field :User, TypesUser::UserType, 'Find an User by ID' do
 
-    argument :id, types.ID
+    argument :id, !types.ID
 
     resolve ->(_object, arguments, context) do
       user_id = arguments[:id]

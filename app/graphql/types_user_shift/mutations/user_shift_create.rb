@@ -10,7 +10,7 @@ TypesUserShift::Mutations::UserShiftCreate = GraphQL::ObjectType.define do
       shift_action_type = arguments[:shiftActionType]
       user = User.find(arguments[:id])
 
-      user_shift = UserShift.new(user_id: user.id, shift_action_type: shift_action_type)
+      user_shift = UserShift.new(user_id: user.id, shift_action_type: shift_action_type, clocked_at: Time.zone.now)
 
       if user_shift.save
         user_shift

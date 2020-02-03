@@ -1,12 +1,10 @@
 TypesUserShift::Queries::UserShiftQueryType = GraphQL::ObjectType.define do
-  connection :userShifts, TypesUserShift::UserShiftType.connection_type, "A paginated list of the user's check-in check-out time" do
+  field :userShift, TypesUserShift::UserShiftType, "A paginated list of the user's check-in check-out time" do
     argument :id, types.ID
 
     resolve ->(_object, arguments, _context) do
-      user_id = arguments[:id]
-
       if user_id
-        UserShift.active.where(user_id: user_id)
+        UserShift.find(arguments[:id])
       end
     end
   end

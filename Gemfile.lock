@@ -50,6 +50,8 @@ GEM
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
     crass (1.0.6)
+    date_flag (1.0.5)
+      activerecord (>= 3.0.0)
     erubi (1.9.0)
     ffi (1.12.2)
     globalid (0.4.2)
@@ -148,6 +150,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.1.0)
   byebug
+  date_flag
   graphiql-rails (= 1.5.0)
   graphql (= 1.8.13)
   listen (>= 3.0.5, < 3.2)

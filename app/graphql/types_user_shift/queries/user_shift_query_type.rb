@@ -3,9 +3,7 @@ TypesUserShift::Queries::UserShiftQueryType = GraphQL::ObjectType.define do
     argument :id, types.ID
 
     resolve ->(_object, arguments, _context) do
-      if user_id
-        UserShift.find(arguments[:id])
-      end
+      UserShift.find(arguments[:id])
     end
   end
 end

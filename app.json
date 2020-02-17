@@ -1,0 +1,10 @@
+{
+  "name": "timetrackingapp",
+  "description": "Time Tracking App GraphQL API, running on Dokku!",
+  "keywords": ["dokku", "rails"],
+  "scripts": {
+    "dokku": {
+      "postdeploy": "bundle exec rails db:migrate"
+    }
+  }
+}
